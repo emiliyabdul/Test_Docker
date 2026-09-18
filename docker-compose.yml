@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    container_name: myapi
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-sqlite:///./data/shop.db}
+    volumes:
+      - ./data:/code/data
+    restart: unless-stopped
